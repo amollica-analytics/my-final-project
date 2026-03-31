@@ -1,4 +1,5 @@
 # my-final-project
+<<<<<<< HEAD
 # Netflix Content Rating Prediction
 
 ## Project Description
@@ -90,3 +91,5 @@ Future improvements for this project include:
 
 Anthony Mollica
 Data Analytics Student – Adrian College
+=======
+>>>>>>> 216c806 (completed final project draft with two models and feature engineering)

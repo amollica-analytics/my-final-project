@@ -115,28 +115,31 @@ However, due to moderate accuracy, the model should not be used independently fo
 pip install pandas numpy scikit-learn seaborn matplotlib
 Run Notebook
 
-How to Run the Project
+## How to Run the Notebook
 
-Open the Jupyter Notebook:
-
-final_project_draft.ipynb
+Open the notebook:
 
 Then run the cells in order:
 
-Load dataset
-Perform feature engineering
-Train machine learning models
-Evaluate results and compare models
-Future Improvements
+- Load dataset  
+- Feature engineering  
+- Train models  
+- Evaluate results  
 
-Potential areas for further improvement include:
+---
 
-Enhancing NLP features using Word2Vec or transformer-based embeddings (e.g., BERT)
-Addressing class imbalance using SMOTE or other resampling techniques
-Testing advanced models such as XGBoost or LightGBM
-Grouping ratings into broader categories (e.g., Kids / Teen / Mature) to improve classification performance
-Author
+## Future Improvements
 
-Anthony Mollica
-Data Analytics Student – Adrian College
+- Improve NLP features using Word2Vec or transformer-based embeddings (e.g., BERT)
+- Address class imbalance using SMOTE or resampling techniques
+- Test advanced models such as XGBoost or LightGBM
+- Group ratings into broader categories (Kids / Teen / Mature)
+
+---
+
+## Author
+
+Anthony Mollica  
+Data Analytics Student – Adrian Collegefurther improvement include:
+
 ---

@@ -110,7 +110,7 @@ However, due to moderate accuracy, the model should not be used independently fo
 
 ## How to Run the Project
 
-### Install Dependencies
+Install Dependencies
 ```bash
 pip install pandas numpy scikit-learn seaborn matplotlib
 Run Notebook
@@ -134,3 +134,4 @@ Author
 
 Anthony Mollica
 Data Analytics Student – Adrian College
+---

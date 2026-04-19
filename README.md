@@ -1,94 +1,136 @@
-# my-final-project
-
 # Netflix Content Rating Prediction
 
-## Project Description
+## Project Overview
 
-This project uses machine learning to predict the content rating of Netflix titles based on metadata such as release year, IMDb score, description length, and genre information. The goal is to determine whether machine learning models can accurately classify the rating category (such as TV-MA, TV-14, or PG-13) using features derived from Netflix and IMDb datasets. Two models were implemented and compared to evaluate their effectiveness in predicting content ratings.
+This project applies machine learning techniques to predict Netflix content ratings (e.g., TV-MA, TV-14, PG) using metadata and textual features from Netflix and IMDb datasets. The goal is to evaluate whether classification models can accurately predict content ratings based on attributes such as release year, genre information, cast size, IMDb score, and text-based features extracted from descriptions.
+
+Multiple machine learning models were built and compared, along with feature engineering, natural language processing, clustering analysis, and hyperparameter tuning.
+
+---
 
 ## Dataset
 
-The dataset used in this project combines Netflix title metadata with IMDb rating information. The merged dataset includes features such as title type, release year, duration, genres, cast information, and IMDb scores.
+The dataset combines Netflix title metadata with IMDb ratings.
 
-Basic dataset statistics:
+**Key characteristics:**
+- ~8,000+ titles
+- Mix of numeric, categorical, and text features
+- Target variable: `rating` (content classification label)
 
-* Approximately 8,000+ titles
-* Multiple feature types including numeric, categorical, and text-based fields
-* Target variable: `rating` (content rating classification)
+**Data sources:**
+- Netflix Titles Dataset (Kaggle)
+- IMDb Ratings Dataset (Kaggle)
 
-Dataset sources:
-
-* Netflix Titles Dataset (Kaggle)
-* IMDb Ratings Dataset (Kaggle)
+---
 
 ## Feature Engineering
 
-Several custom features were created to improve model performance:
+The following features were created to improve predictive performance:
 
-* **Description Length:** Character count of the content description.
-* **Genre Count:** Number of genres assigned to each title.
-* **Cast Count:** Number of actors listed in the cast field.
+- **Description Length:** Measures length of content descriptions.
+- **Genre Count:** Number of genres assigned to each title.
+- **Cast Count:** Number of actors listed in the cast.
+- **Mature Keyword Count:** Counts presence of mature-themed words (e.g., violence, crime, war).
+- **Country Count:** Number of countries involved in production.
 
-These engineered features were designed to capture patterns that may relate to how content is rated.
+These features help capture content complexity, production scale, and thematic maturity.
+
+---
+
+## NLP and Clustering Analysis
+
+Natural language processing techniques were applied using TF-IDF vectorization on the description field to extract keyword-level patterns from text data.
+
+In addition, K-Means clustering was used to group similar titles based on feature similarity. While clusters do not directly correspond to rating categories, they reveal underlying structure in the dataset and highlight patterns in content grouping.
+
+---
 
 ## Models Implemented
 
-Two machine learning models were implemented for classification:
+### Logistic Regression
+- Baseline linear classification model
+- Hyperparameter: `max_iter=1000`
 
-1. **Logistic Regression**
+### Random Forest (Baseline)
+- Ensemble tree-based model
+- Hyperparameters: `n_estimators=100`, `max_depth=10`
 
-   * Baseline classification model
-   * Hyperparameters: `max_iter=1000`, `solver='lbfgs'`
+### Random Forest (Optimized)
+- Tuned using GridSearchCV
+- Parameters included `max_depth` and `min_samples_split`
 
-2. **Random Forest Classifier**
+---
 
-   * Ensemble model capable of capturing nonlinear relationships
-   * Hyperparameters: `n_estimators=100`, `max_depth=10`
+## Model Performance
 
-Both models were trained on the same dataset and evaluated using the same metrics to ensure a fair comparison.
+| Model | Accuracy | Precision | Recall | F1 Score |
+|------|----------|-----------|--------|----------|
+| Logistic Regression | 0.396 | 0.258 | 0.396 | 0.287 |
+| Random Forest (Baseline) | 0.403 | 0.357 | 0.403 | 0.352 |
+| Random Forest (Optimized) | **0.412 (Best)** | **0.382** | **0.412** | **0.358** |
 
-## Current Results
+The optimized Random Forest model achieved the best overall performance across all evaluation metrics, indicating that hyperparameter tuning improved the model's ability to generalize and capture patterns in the dataset.
 
-| Model               | Accuracy |
-| ------------------- | -------- |
-| Logistic Regression | ~40%     |
-| Random Forest       | ~42%     |
+---
 
-Random Forest performed slightly better due to its ability to model nonlinear relationships between features. However, both models were affected by class imbalance in the rating categories.
+## Final Model Selection
+
+The **Random Forest (Optimized)** model was selected as the final model.
+
+Although the improvement over the baseline model is modest, the optimized model achieved the highest accuracy, precision, recall, and F1 score across all tested models. This indicates that tuning parameters such as `max_depth` and `min_samples_split` helped improve generalization performance.
+
+Therefore, the optimized Random Forest model is the most suitable choice for deployment in this project.
+
+---
+
+## Key Insights
+
+- Genre and text-based features provide important signals for rating prediction.
+- Mature keyword indicators improve interpretability of content classification.
+- Class imbalance significantly impacts overall model performance.
+- Hyperparameter tuning provided a measurable improvement in model performance, with the optimized Random Forest outperforming the baseline model.
+
+---
+
+## Ethical Considerations
+
+This model may reflect biases present in the dataset, including uneven representation of content ratings and regional differences in classification standards. If used in production, incorrect predictions could result in inappropriate content categorization.
+
+To mitigate risk, the model should be used as a decision-support tool rather than a fully automated system. Human review is recommended for borderline cases, and regular monitoring should be performed to ensure fairness and reliability.
+
+---
+
+## Business Recommendations
+
+This model can assist streaming platforms in pre-classifying new content before official ratings are assigned. It may help flag titles that require additional review for age appropriateness.
+
+However, due to moderate accuracy, the model should not be used independently for automated decision-making. Instead, it should support content moderation teams as an advisory tool. Periodic retraining is recommended as new content is added.
+
+---
 
 ## How to Run the Project
 
 ### Install Dependencies
-
-Run the following command to install required libraries:
-
+```bash
 pip install pandas numpy scikit-learn seaborn matplotlib
+Run Notebook
 
-### Run the Notebook
+Open:
 
-Open and run the Jupyter notebook:
+final_project_draft.ipynb
 
-`final_project_draft.ipynb`
+Steps:
 
-The notebook will:
-
-1. Load and explore the dataset
-2. Perform feature engineering
-3. Prepare data for modeling
-4. Train and evaluate machine learning models
-5. Compare model performance
-
-## Future Improvements
-
-Future improvements for this project include:
-
-* Creating additional engineered features using text analysis from the description column
-* Addressing class imbalance using resampling techniques
-* Hyperparameter tuning for the Random Forest model
-* Testing additional algorithms such as Gradient Boosting or XGBoost
-
-## Author
+Load dataset
+Run feature engineering
+Train models
+View results and comparisons
+Future Improvements
+Improve NLP using Word2Vec or transformer-based embeddings
+Address class imbalance using SMOTE or resampling
+Test advanced models such as XGBoost or LightGBM
+Experiment with grouping ratings into broader categories (Kids / Teen / Mature)
+Author
 
 Anthony Mollica
 Data Analytics Student – Adrian College
-

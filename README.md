@@ -114,6 +114,7 @@ However, due to moderate accuracy, the model should not be used independently fo
 ```bash
 pip install pandas numpy scikit-learn seaborn matplotlib
 Run Notebook
+---
 
 ## How to Run the Notebook
 

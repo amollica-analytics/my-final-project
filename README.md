@@ -114,7 +114,7 @@ However, due to moderate accuracy, the model should not be used independently fo
 
 pip install pandas numpy scikit-learn seaborn matplotlib
 Run Notebook
----
+
 
 ## How to Run the Notebook
 
@@ -141,6 +141,6 @@ Then run the cells in order:
 ## Author
 
 Anthony Mollica  
-Data Analytics Student – Adrian Collegefurther improvement include:
+Data Analytics Student – Adrian College
 
 ---
